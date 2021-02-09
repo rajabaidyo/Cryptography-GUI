@@ -1,1 +1,13 @@
+Run command => python3 netsec.py
 
+Contents of the app:
+1) netsec.py - driver code
+2) ciphers.py - algorithms code
+
+Contains the following ciphers -
+1) Simmons-experiment
+2) Caesar cipher
+3) Monoalphabetic cipher
+4) Playfair cipher
+5) Hill cipher - It's yet to be implemented - to be present in second iteration of the app (problem with the modular division during decryption)
+6) Vigenere cipher

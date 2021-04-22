@@ -22,6 +22,7 @@ diag = plt.figure(figsize=(3,3))
 
 def Take_input():
 	INPUT = inputtxt.get("1.0", "end-1c")
+	keying = key.get("1.0", "end-1c")
 	print(INPUT)
 	listing=[]
 	delisting=[]
@@ -34,7 +35,7 @@ def Take_input():
 		Output3.insert(END, 'Correct input')
 		rounds = int(variable.get())
 		global diag
-		diag = des.des(INPUT,rounds,listing,delisting)
+		diag = des.des(INPUT,rounds,listing,delisting,keying)
 		print(listing[0])
 		print(listing[1])
 		print(listing[2])
@@ -59,9 +60,9 @@ def Take_input():
 		Output3.delete('1.0', END)
 		Output3.insert(END, "Wrong input") 
 
-l = Label(text = "Insert only hexadecimal input")
+l = Label(text = "Insert hexadecimal input")
 l0 = Label(text = '# of rounds')
-inputtxt = Text(root, height = 6,
+inputtxt = Text(root, height = 2,
 				width = 18,
 				bg = "light yellow")
 OPTIONS = [
@@ -112,13 +113,18 @@ Output5 = Text(root, height = 2,
 Output6 = Text(root, height = 2, 
 				width = 16, 
 				bg = "light cyan")
-
-
+keys = Label(text = 'Insert hexadecimal key')
+key = Text(root, height = 2, 
+				width = 18, 
+				bg = "light yellow")
 
 graph.place(x=50,y=50)
-l.place(x=120,y=0)
+l.place(x=130,y=0)
 l0.place(x=310,y=20)
 inputtxt.place(x=140,y=20)
+keys.place(x=130, y=60)
+key.place(x=140,y=80)
+
 Display.place(x=140,y=125)
 w.place(x=320,y=40)
 Output1.place(x=5,y=210)

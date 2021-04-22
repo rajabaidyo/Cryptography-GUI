@@ -1,4 +1,4 @@
-def des(pt,nor,listing,delisting):
+def des(pt,nor,listing,delisting,key):
 	# Hexadecimal to binary conversion
 	delist1=[]
 	delist2=[]
@@ -236,7 +236,7 @@ def des(pt,nor,listing,delisting):
 			delist1.append(bin2hex(cipher_text))
 		return cipher_text
 
-	key = "AB87E0FA59C1D47F"
+	# key = "AB87E0FA59C1D47F"
 
 	# Key generation
 	# --hex to binary
@@ -549,7 +549,7 @@ def des(pt,nor,listing,delisting):
 			delist2.append(bin2hex(cipher_text))
 		return cipher_text
 
-	key = "AB87E0FA59C1D47F"
+	# key = "AB87E0FA59C1D47F"
 
 	# Key generation
 	# --hex to binary
@@ -843,7 +843,7 @@ def des(pt,nor,listing,delisting):
 			delist3.append(bin2hex(cipher_text))
 		return cipher_text
 
-	key = "AB87E0FA59C1D47F"
+	# key = "AB87E0FA59C1D47F"
 
 	# Key generation
 	# --hex to binary

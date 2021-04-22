@@ -34,7 +34,7 @@ def Take_input():
 		Output3.insert(END, 'Correct input')
 		rounds = int(variable.get())
 		global diag
-		diag = des.des(rounds,listing,delisting)
+		diag = des.des(INPUT,rounds,listing,delisting)
 		print(listing[0])
 		print(listing[1])
 		print(listing[2])

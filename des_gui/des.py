@@ -259,7 +259,11 @@ def des(pt,nor,listing,delisting,key):
 	shift_table = [1, 1, 2, 2,
 					2, 2, 2, 2,
 					1, 2, 2, 2,
-					2, 2, 2, 1 ]
+					2, 2, 2, 1,
+					1, 1, 2, 2,
+					2, 2, 2, 2,
+					1, 2, 2, 2,
+					2, 2, 2, 1  ]
 
 	# Key- Compression Table : Compression of key from 56 bits to 48 bits
 	key_comp = [14, 17, 11, 24, 1, 5,
@@ -489,7 +493,6 @@ def des(pt,nor,listing,delisting,key):
 	d_round1=[]
 	def encrypt(pt, rkb, rk, lol,one, nor):
 		pt = hex2bin(pt)
-		
 		# Initial Permutation
 		pt = permute(pt, initial_perm, 32)
 		print("After inital permutation", bin2hex(pt))
@@ -498,32 +501,26 @@ def des(pt,nor,listing,delisting,key):
 				lol[0]=lol[0]+bin2hex(pt)
 			else:
 				lol.append(bin2hex(pt))
-		
 		# Splitting
 		left = pt[0:16]
 		right = pt[16:32]
 		for i in range(0, nor):
 			# Expansion D-box: Expanding the 32 bits data into 48 bits
 			right_expanded = permute(right, exp_d, 24)
-			
 			# XOR RoundKey[i] and right_expanded
 			xor_x = xor(right_expanded, rkb[i])
-
 			# S-boxex: substituting the value from s-box table by calculating row and column
 			sbox_str = ""
 			for j in range(0, 4):
 				row = bin2dec(int(xor_x[j * 6] + xor_x[j * 6 + 5]))
 				col = bin2dec(int(xor_x[j * 6 + 1] + xor_x[j * 6 + 2] + xor_x[j * 6 + 3] + xor_x[j * 6 + 4]))
 				val = sbox[j][row][col]
-				sbox_str = sbox_str + dec2bin(val)
-				
+				sbox_str = sbox_str + dec2bin(val)	
 			# Straight D-box: After substituting rearranging the bits
 			sbox_str = permute(sbox_str, per, 16)
-			
 			# XOR left and sbox_str
 			result = xor(left, sbox_str)
 			left = result
-			
 			# Swapper
 			if(i != nor-1):
 				left, right = right, left
@@ -534,10 +531,8 @@ def des(pt,nor,listing,delisting,key):
 				lol[i]=lol[i]+bin2hex(left)+bin2hex(right)
 			else:
 				lol.append(bin2hex(left)+bin2hex(right))
-		
 		# Combination
 		combine = left + right
-		
 		# Final permutaion: final rearranging of bits to get cipher text
 		cipher_text = permute(combine, final_perm, 32)
 		if one==True:
@@ -568,7 +563,11 @@ def des(pt,nor,listing,delisting,key):
 	shift_table = [1, 1, 2, 2,
 					2, 2, 2, 2,
 					1, 2, 2, 2,
-					2, 2, 2, 1 ]
+					2, 2, 2, 1,
+					1, 1, 2, 2,
+					2, 2, 2, 2,
+					1, 2, 2, 2,
+					2, 2, 2, 1  ]
 
 	# Key- Compression Table : Compression of key from 56 bits to 48 bits
 	key_comp = [27,23,18,13,9,4,
@@ -783,7 +782,6 @@ def des(pt,nor,listing,delisting,key):
 
 	def encrypt(pt, rkb, rk, lol, one, nor):
 		pt = hex2bin(pt)
-		
 		# Initial Permutation
 		pt = permute(pt, initial_perm, 16)
 		print("After inital permutation", bin2hex(pt))
@@ -791,33 +789,27 @@ def des(pt,nor,listing,delisting,key):
 			if len(lol)>=1:
 				lol[0]=lol[0]+bin2hex(pt)
 			else:
-				lol.append(bin2hex(pt))
-			
+				lol.append(bin2hex(pt))	
 		# Splitting
 		left = pt[0:8]
 		right = pt[8:16]
 		for i in range(0, nor):
 			# Expansion D-box: Expanding the 32 bits data into 48 bits
 			right_expanded = permute(right, exp_d, 12)
-			
 			# XOR RoundKey[i] and right_expanded
 			xor_x = xor(right_expanded, rkb[i])
-
 			# S-boxex: substituting the value from s-box table by calculating row and column
 			sbox_str = ""
 			for j in range(0, 2):
 				row = bin2dec(int(xor_x[j * 6] + xor_x[j * 6 + 5]))
 				col = bin2dec(int(xor_x[j * 6 + 1] + xor_x[j * 6 + 2] + xor_x[j * 6 + 3] + xor_x[j * 6 + 4]))
 				val = sbox[j][row][col]
-				sbox_str = sbox_str + dec2bin(val)
-				
+				sbox_str = sbox_str + dec2bin(val)	
 			# Straight D-box: After substituting rearranging the bits
 			sbox_str = permute(sbox_str, per, 8)
-			
 			# XOR left and sbox_str
 			result = xor(left, sbox_str)
 			left = result
-			
 			# Swapper
 			if(i != nor-1):
 				left, right = right, left
@@ -828,10 +820,8 @@ def des(pt,nor,listing,delisting,key):
 				lol[i]=lol[i]+bin2hex(left)+bin2hex(right)
 			else:
 				lol.append(bin2hex(left)+bin2hex(right))
-		
 		# Combination
 		combine = left + right
-		
 		# Final permutaion: final rearranging of bits to get cipher text
 		cipher_text = permute(combine, final_perm, 16)
 		if one==True:
@@ -860,7 +850,11 @@ def des(pt,nor,listing,delisting,key):
 	shift_table = [1, 1, 2, 2,
 					2, 2, 2, 2,
 					1, 2, 2, 2,
-					2, 2, 2, 1 ]
+					2, 2, 2, 1,
+					1, 1, 2, 2,
+					2, 2, 2, 2,
+					1, 2, 2, 2,
+					2, 2, 2, 1  ]
 
 	# Key- Compression Table : Compression of key from 56 bits to 48 bits
 	key_comp = [13,9,4,
